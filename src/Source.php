@@ -120,7 +120,6 @@ class Source
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION , true);
             curl_setopt($ch, CURLOPT_AUTOREFERER , true);
             curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.2.12) Gecko/20101026 Firefox/3.6.12');
-            curl_setopt($ch, CURLOPT_FILE, $fp);
             $content = curl_exec($ch);
             curl_close($ch);
 
