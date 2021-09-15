@@ -110,7 +110,7 @@ class Source
             return Storage::disk($this->disk)->get($this->path);
         } else {
             $url = $this->path;
-            
+            $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_TIMEOUT, 20);
