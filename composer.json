@@ -1,5 +1,5 @@
 {
-    "name": "shadercloud/laravel-thumbnail",
+    "name": "jiangti/laravel-thumbnail",
     "description": "Laravel Thumbnail generator",
     "keywords": ["laravel", "image", "thumbnail"],
     "license": "MIT",
