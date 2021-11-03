@@ -109,7 +109,22 @@ class Source
         if ($this->disk) {
             return Storage::disk($this->disk)->get($this->path);
         } else {
-            $content = file_get_contents($this->path);
+            $url = $this->path;
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+            curl_setopt($ch, CURLOPT_HEADER , false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST , false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER , false);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION , true);
+            curl_setopt($ch, CURLOPT_AUTOREFERER , true);
+            curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.2.12) Gecko/20101026 Firefox/3.6.12');
+            $content = curl_exec($ch);
+            curl_close($ch);
+
+
+            
             if ($content === false) {
                 throw new Exception('Could not get file content for path "' . $this->path . '"');
             }
